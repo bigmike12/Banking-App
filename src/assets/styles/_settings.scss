@@ -1,0 +1,20 @@
+// Globals
+$global-font-size: 100%;
+$global-font-family: 'Poppins', sans-serif;
+
+// Body styles
+$body-font-size: $global-font-size;
+$body-font-color: #000000;
+$body-background-color: #fff;
+
+// Navigation Search Band
+$search-band-border-radius-dimension: to-rem(4);
+$search-band-items-height: to-rem(35);
+
+// Font weights
+$light: 200;
+$regular: 300;
+$dense: 600;
+
+//drop shadow
+$shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);

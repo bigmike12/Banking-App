@@ -1,0 +1,62 @@
+@import "../settings";
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: $global-font-family;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  transition: color 0.3s ease-in-out;
+  width: 100%;
+  background-color: $body-background-color;
+  color: $body-font-color;
+  font-size: $body-font-size;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+}
+
+.hide {
+  display: none !important;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+//links
+a {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+// Reset images for responsive behavior
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+// Set vertical alignment for svg elements
+svg {
+  vertical-align: middle;
+}
+
+// disable WebKit’s proprietary pseudo elements
+input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+}
