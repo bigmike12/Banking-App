@@ -8,9 +8,9 @@ import "./App.css";
 function App() {
   return (
     <div>
-      {/* <SignUp /> */}
+      <SignUp />
       {/* <LoginPage /> */}
-      <HomePage />
+      {/* <HomePage /> */}
       {/* <BankingPage /> */}
     </div>
   );
