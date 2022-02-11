@@ -1,9 +1,19 @@
 import Layout from "../../components/Layout/Layout";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./HomePage.scss";
 import Table from "components/Table/Table";
+import AuthContext from "context/auth/AuthContext";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
+  const authContext = useContext(AuthContext);
+  const { loadUser } = authContext;
+
+  useEffect(() => {
+    loadUser();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const initialTrans = [
     {
       id: 1,
@@ -50,14 +60,14 @@ const HomePage = () => {
           <div className="top-container-money">
             <p className="top-container__balance">Current Balance</p>
             <div>
-            <h1 className="top-container__amount">{totalBalUSD}</h1>
-            <h1 className="top-container__amount">{totalBalEUR}</h1>
-            <h1 className="top-container__amount">{totalBalGBP}</h1>
+              <h1 className="top-container__amount">{totalBalUSD}</h1>
+              <h1 className="top-container__amount">{totalBalEUR}</h1>
+              <h1 className="top-container__amount">{totalBalGBP}</h1>
             </div>
           </div>
 
           <div className="top-container__button">
-            <button>New Transaction</button>
+            <Link to="/transfer"><button>New Transaction</button></Link>
           </div>
         </div>
 

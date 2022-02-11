@@ -1,0 +1,60 @@
+@import "src/assets/styles/shared-styles.scss";
+
+.transfer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: to-rem(100);
+}
+
+.recipientEmail {
+  padding: to-rem(15);
+  width: to-rem(350);
+
+  &::placeholder {
+    font-weight: $dense;
+  }
+}
+
+.sendingAmount {
+  padding: to-rem(15);
+  width: to-rem(300);
+
+  &[type="number"] {
+    -webkit-appearance: none;
+  }
+
+  &::placeholder {
+    font-weight: $dense;
+  }
+}
+
+.transfer {
+  align-items: center;
+  padding: to-rem(20);
+
+  .transferOptions {
+    padding: to-rem(15);
+    background-color: color(Secondary);
+    width: to-rem(100);
+    color: white;
+    font-weight: $dense;
+  }
+}
+
+.submitButton {
+  margin-top: to-rem(15);
+  padding: to-rem(10);
+  width: to-rem(300);
+  background-color: color(Primary);
+  color: white;
+  font-size: to-rem(16);
+  font-weight: $dense;
+  border-radius: to-rem(5);
+  margin-bottom: to-rem(30);
+  transition: 300ms;
+
+  &:hover {
+    background-color: color(Secondary);
+  }
+}

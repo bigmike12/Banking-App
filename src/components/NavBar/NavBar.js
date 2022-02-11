@@ -1,15 +1,18 @@
-import React from "react";
+import AuthContext from "context/auth/AuthContext";
+import React, { useContext } from "react";
 import "./NavBar.scss";
 
 const Navbar = () => {
-let user = "yuwa.g@konga.com"
+  const authContext = useContext(AuthContext);
+  const { user } = authContext;
+
 
   return (
     <div className="navbar-container">
       <nav className="navbar">
         <p>Dashboard</p>
         <div className="navbar-info">
-          <h1>{user}</h1>
+          <h1>Welcome <span>{user && user.name.toUpperCase()}</span></h1>
         </div>
       </nav>
     </div>

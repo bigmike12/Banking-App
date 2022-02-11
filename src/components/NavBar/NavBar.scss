@@ -14,17 +14,22 @@
     justify-content: flex-start;
 
     p {
-        font-size: to-rem(25);
-        font-weight: $dense;
+      font-size: to-rem(25);
+      font-weight: $dense;
     }
 
     &-info {
-        margin-left: auto;
+      margin-left: auto;
 
-        h1{
-            font-size: to-rem(20);
-            font-weight: $regular;
+      h1 {
+        font-size: to-rem(20);
+        font-weight: $regular;
+
+        span {
+          font-size: to-rem(24);
+          font-weight: $dense;
         }
+      }
     }
   }
 }
