@@ -28,7 +28,6 @@ const SignUp = () => {
     } else if (password.length < 6) {
       return toast.error("Password must be above six characters");
     } else {
-      console.log("here");
       register({
         name,
         email,

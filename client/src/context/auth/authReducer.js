@@ -91,7 +91,6 @@ import {
                 loading: false,
                 user: null,
                 error: null,
-                message: "Logged Out Successfully"
             }
 
         case CLEAR_ERRORS:
