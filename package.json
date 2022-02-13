@@ -25,7 +25,7 @@
     "start": "react-scripts start",
     "build": "yarn run build",
     "install-client": "yarn add",
-    "heroku-postbuild": "yarn run intstall-client && yarn run build",
+    "heroku-postbuild": "yarn run install-client && yarn run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
