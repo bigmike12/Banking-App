@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "yarn run build",
+    "build": "react-scripts build",
     "install-client": "yarn add",
     "heroku-postbuild": "yarn run install-client && yarn run build",
     "test": "react-scripts test",
