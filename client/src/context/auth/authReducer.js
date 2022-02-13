@@ -90,7 +90,8 @@ import {
                 isAuthenticated: false,
                 loading: false,
                 user: null,
-                error: action.payload
+                error: null,
+                message: "Logged Out Successfully"
             }
 
         case CLEAR_ERRORS:
