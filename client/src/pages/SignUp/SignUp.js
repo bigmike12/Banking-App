@@ -2,9 +2,10 @@ import React, { useContext, useState } from "react";
 import "./SignUp.scss";
 import AuthContext from "context/auth/AuthContext";
 import toast, { Toaster } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
-const SignUp = () => {
+const SignUp = (props) => {
+  const history = useHistory();
   const authContext = useContext(AuthContext);
   const { register, error, clearErrors, isAuthenticated } = authContext;
   const [user, setUser] = useState({
@@ -34,6 +35,8 @@ const SignUp = () => {
         password,
       });
       toast.success("User registered");
+      props.history.push('/');
+
     }
   };
 
