@@ -1,7 +1,7 @@
 const express = require("express");
 const { Mongoose } = require("mongoose");
 const connectDB = require("./config/db");
-// const path = require("path");
+const path = require("path");
 
 const app = express();
 
@@ -20,6 +20,14 @@ app.use("/api/transfer", require("./routes/transaction"));
 Mongoose.connection.on("connected", () => {
   console.log("Mongoose is connected!!!");
 });
+
+//Serve static assets in production
+if(process.env.NODE_ENV === 'production'){
+  //set static folder
+  app.use(express.static('../build'));
+
+  app.get('*', (req, res) => res.sendFile(path.resolve(__dirname , 'build' , 'index.html')));
+}
 
 const PORT = process.env.PORT || 5020;
 
