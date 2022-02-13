@@ -6,7 +6,9 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     CLEAR_ERRORS,
-    LOGOUT
+    LOGOUT,
+    GET_USERS_SUCCESS,
+    GET_USERS_FAIL
  } from '../types'
 
  const authReducer = (state, action) => {
@@ -16,7 +18,8 @@ import {
                 ...state,
                 isAuthenticated: true,
                 user: action.payload,
-                loading: false
+                loading: false,
+                message: 'User logged in'
             }
         case AUTH_ERROR:
             localStorage.removeItem('token')
@@ -45,6 +48,20 @@ import {
                 isAuthenticated: false,
                 loading: false,
                 user: null,
+                error: action.payload
+            }
+        case GET_USERS_SUCCESS:
+            return {
+                ...state,
+                ...action.payload,
+                users: action.payload,
+                loading: false,
+            }
+        case GET_USERS_FAIL:
+            localStorage.removeItem('token');
+            return {
+                ...state,
+                loading: false,
                 error: action.payload
             }
         case LOGIN_SUCCESS:
@@ -79,7 +96,8 @@ import {
         case CLEAR_ERRORS:
             return {
                 ...state,
-                error: null
+                error: null,
+                message: null
             }
         default:
             return state;

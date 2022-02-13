@@ -1,88 +1,155 @@
-import Layout from "../../components/Layout/Layout";
-import React, { useState } from "react";
-import "./BankingPage.scss";
+import Layout from '../../components/Layout/Layout';
+import React, { useState, useContext, useEffect } from 'react';
+import './BankingPage.scss';
+import AuthContext from 'context/auth/AuthContext';
+import TransactionContext from 'context/transactions/TransactionContext';
+import toast, { Toaster } from 'react-hot-toast';
+import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const BankingPage = () => {
-// const usdRate = 100
+	const authContext = useContext(AuthContext);
+	const transactionContext = useContext(TransactionContext);
+	const { loadUser, user, getUsers, users } = authContext;
+	const { sendMoney, error, message, clearErrors } = transactionContext;
+	const history = useHistory();
 
-  const [transfer, setTransfer] = useState({
-    email: "",
-    send: "",
-    receive: "",
-    currency: "USD"
-  });
+	useEffect(() => {
+		loadUser();
+		// eslint-disable-next-line
+	}, []);
 
-  const onChange = (e) => {
-    setTransfer({
-      ...transfer,
-      [e.target.name]: e.target.value,
-    });
-  };
+	useEffect(() => {
+		if (message) {
+			toast.success(message);
+			clearErrors();
+		}
+		//eslint-disable-next-line
+	}, [message]);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+	useEffect(() => {
+		if (error) {
+			toast.error(error);
+			clearErrors();
+		}
+		//eslint-disable-next-line
+	}, [error]);
 
-    console.log(transfer)
-  }
+	useEffect(() => {
+		if (users === null) {
+			getUsers();
+		}
+		//eslint-disable-next-line
+	}, [users]);
 
-  // const currencyRates
+	const [transfer, setTransfer] = useState({
+		sendTo: '',
+		amount: '',
+		senderCurrency: 'USD',
+		recipientCurrency: 'USD',
+	});
 
-  return (
-    <>
-      <Layout>
-        <p>How much would you like to transfer?</p>
+	const { sendTo, amount, senderCurrency, recipientCurrency } = transfer;
 
-        <form onSubmit={onSubmit}>
-          <div className="transfer-container">
-            <div>
-              <input
-                name="email"
-                className="recipientEmail"
-                type="email"
-                placeholder="Recipient's Email"
-                onChange={onChange}
-              />
-            </div>
+	const onChange = e => {
+		setTransfer({
+			...transfer,
+			[e.target.name]: e.target.value,
+		});
+	};
 
-            <div className="transfer">
-              <input
-                name="send"
-                className="sendingAmount"
-                type="number"
-                placeholder="You Send"
-                onChange={onChange}
-              />
-              <select name="currency" className="transferOptions" onChange={onChange}>
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="GBP">GBP</option>
-              </select>
-            </div>
+	const onSubmit = e => {
+		e.preventDefault();
+		if (user._id === transfer.sendTo) {
+			return toast.error("You can't send money to yourself");
+		}
+		if (transfer.sendTo === '' && transfer.amount === '') {
+			return toast.error('All fields are required');
+		}
+		sendMoney(transfer, history);
+	};
 
-            <div className="transfer">
-              <input
-                name="receive"
-                className="sendingAmount"
-                type="number"
-                placeholder="Recipient gets"
-                onChange={onChange}
-                disabled
-              />
-              <select name="sending" className="transferOptions">
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="GBP">GBP</option>
-              </select>
-            </div>
+	return (
+		<>
+			<Toaster />
+			<Layout>
+				<p>How much would you like to transfer?</p>
+				<button
+					onClick={() => history.push('/transactions')}
+					className='transactionsBtn'
+				>
+					View all transactions
+				</button>
 
-            <button type="submit" className="submitButton">
-              Send
-            </button>
-          </div>
-        </form>
-      </Layout>
-    </>
-  );
+				<form onSubmit={onSubmit}>
+					<div className='transfer-container'>
+						<div>
+							<select
+								name='sendTo'
+								className='recipientEmail'
+								onChange={onChange}
+								value={sendTo}
+							>
+								<option>Choose User</option>
+								{users &&
+									users.map(u => (
+										<option key={u._id} value={u._id}>
+											{u.email}
+										</option>
+									))}
+							</select>
+						</div>
+
+						<div className='transfer'>
+							<input
+								name='amount'
+								className='sendingAmount'
+								type='number'
+								placeholder='You Send'
+								onChange={onChange}
+							/>
+							<select
+								name='senderCurrency'
+								className='transferOptions'
+								onChange={onChange}
+								value={senderCurrency}
+							>
+								<option value='USD'>USD</option>
+								<option value='EUR'>EUR</option>
+								<option value='GBP'>GBP</option>
+							</select>
+						</div>
+
+						<div className='transfer'>
+							<input
+								name='amount'
+								className='sendingAmount'
+								type='number'
+								placeholder='Recipient gets'
+								//onChange={onChange}
+								value={amount}
+								disabled
+							/>
+							<select
+								name='recipientCurrency'
+								className='transferOptions'
+								onChange={onChange}
+								value={recipientCurrency}
+							>
+								<option value='USD'>USD</option>
+								<option value='EUR'>EUR</option>
+								<option value='GBP'>GBP</option>
+							</select>
+						</div>
+
+						<button type='submit' className='submitButton'>
+							Send
+						</button>
+					</div>
+				</form>
+			</Layout>
+		</>
+	);
 };
 
 export default BankingPage;

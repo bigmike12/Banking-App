@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon server.js",
-    "start": "node server.js"
+    "start": "npm run server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.1",
     "config": "^3.3.7",
     "express": "^4.17.2",
     "express-validator": "^6.14.0",

@@ -5,17 +5,25 @@ const TransactionSchema = mongoose.Schema({
         ref: 'users',
         required: true
     },
-    from: {
+    sendTo: {
         type: String,
-        required: true
+        ref: 'users'
     },
     amount: {
         type: Number,
         required: true,
     },
-    currency: {
+    senderCurrency: {
         type: String,
         required: true
+    },
+    recipientCurrency: {
+        type: String,
+        required: true
+    },
+    status: {
+        type: String,
+        default: 'success'
     },
     date: {
         type: Date,

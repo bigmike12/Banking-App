@@ -1,3 +1,5 @@
+/** @format */
+
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const router = express.Router();
@@ -6,10 +8,40 @@ const config = require("config");
 const { check, validationResult } = require("express-validator");
 
 const User = require("../models/User");
+const auth = require("../middleware/auth");
 
-//@route   POST api/users
-//@desc    Register a user
-//@access  Public
+// //@route   POST api/users
+// //@desc    Register a user
+// //@access  Public
+
+// router.get("/", auth, async (req, res) => {
+//   try {
+//     await User.find(function (err, data) {
+//       if (err) return err;
+//       res.json(data);
+//     });
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).send("Server Error");
+//   }
+// });
+
+//@route   GET api/users
+//@desc    Get all users
+//@access  Private
+router.get('/', auth, async (req, res) => {
+    try{
+        const users = await User.find({ user: req.user.id }).sort({ date: -1});
+        res.json(users);
+    }
+    catch(err){
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+})
+
+
+
 router.post(
   "/",
   [
@@ -58,13 +90,12 @@ router.post(
           (err, token) => {
             if (err) throw err;
             res.json({ token: token, msg: "User Registered" });
-
           }
         );
       }
     } catch (err) {
       console.error(err.message);
-      res.status(500).send("Server Error");
+      return res.status(500).send("Server Error");
     }
   }
 );

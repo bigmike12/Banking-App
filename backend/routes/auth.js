@@ -62,12 +62,12 @@ router.post(
         },
         (err, token) => {
           if (err) throw err;
-          res.json({ token });
+          res.json({ token, userId: user.id, });
         }
       );
     } catch (err) {
       console.error(err.message);
-      res.status(500).send("Server Error");
+      return res.status(500).send("Server Error");
     }
   }
 );
