@@ -1,0 +1,53 @@
+@import "src/assets/styles/shared-styles.scss";
+
+.navbar-container {
+  background-color: color(Secondary);
+  color: white;
+  box-shadow: $shadow;
+  margin-bottom: to-rem(84);
+
+  .navbar {
+    height: to-rem(80);
+    display: flex;
+    align-items: center;
+    margin: 0 to-rem(60);
+    justify-content: flex-start;
+
+    p {
+      font-size: to-rem(25);
+      font-weight: $dense;
+    }
+
+    &-info {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+
+      h1 {
+        font-size: to-rem(20);
+        font-weight: $regular;
+        margin-right: to-rem(10);
+
+        span {
+          font-size: to-rem(24);
+          font-weight: $dense;
+        }
+      }
+    }
+  }
+
+  .logout {
+    padding: to-rem(10);
+    width: to-rem(100);
+    background-color: white;
+    border-radius: to-rem(5);
+    color: color(Secondary);
+    font-weight: $dense;
+    transition: 300ms;
+
+    &:hover {
+      background-color: color(Primary);
+      color: white;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@import "src/assets/styles/shared-styles.scss";
+
+
+.top-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: to-rem(10);
+
+    &-money {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__balance {
+        display: block;
+        font-size: to-rem(20);
+        font-weight: $regular;
+        color: color(Primary);
+    }
+
+    &__amount {
+        flex-direction: row;
+        font-size: to-rem(25);
+        font-weight: $dense;
+        color: color(Secondary);
+    }
+
+    &__button {
+        margin-left: auto;
+    
+        button {
+            padding: to-rem(15);
+            border-radius: to-rem(5);
+            font-size: to-rem(16);
+            font-weight: $regular;
+            color: white;
+            background-color: color(Secondary);
+            box-shadow: $shadow;
+        }
+    }
+}

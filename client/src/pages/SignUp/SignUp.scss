@@ -1,0 +1,79 @@
+@import "src/assets/styles/shared-styles.scss";
+
+.signup {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &-title {
+    font-size: to-rem(25);
+    font-weight: $dense;
+    color: color(Secondary);
+    margin-bottom: to-rem(15);
+  }
+
+  &-title2 {
+    font-size: to-rem(15);
+    font-weight: $regular;
+    color: color(Secondary);
+    margin-bottom: to-rem(15);
+
+    span {
+      color: red;
+      font-weight: $dense;
+    }
+  }
+
+  &-footer {
+    margin-top: to-rem(30);
+
+    p {
+        font-weight: $regular;
+
+        a {
+            font-weight: $dense;
+            color: color(Secondary);
+            text-decoration: underline;
+        }
+    }
+  }
+}
+
+.signup-form {
+  width: to-rem(400);
+  display: flex;
+  flex-direction: column;
+  border-bottom: to-rem(0.5) solid color(Gray);
+
+  label {
+    display: block;
+    color: color(Gray);
+    font-size: to-rem(14);
+    font-weight: $regular;
+  }
+
+  input {
+    width: 100%;
+    padding: to-rem(10);
+    border: 1px solid color(Primary) ;
+    border-radius: to-rem(5);
+    margin-bottom: to-rem(7);
+  }
+
+  button {
+      margin-top: to-rem(15);
+      padding: to-rem(10);
+      background-color: color(Primary);
+      color: white;
+      font-size: to-rem(16);
+      font-weight: $dense;
+      border-radius: to-rem(5);
+      margin-bottom: to-rem(30);
+
+      &:hover {
+        background-color: color(Secondary);
+      }
+  }
+}

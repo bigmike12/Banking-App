@@ -1,0 +1,70 @@
+@import "src/assets/styles/shared-styles.scss";
+
+.login {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &-title {
+    font-size: to-rem(25);
+    font-weight: $dense;
+    color: color(Secondary);
+    margin-bottom: to-rem(5);
+  }
+
+  &-password {
+      margin-top: to-rem(15);
+  }
+
+  &-footer {
+    margin-bottom: to-rem(20);
+
+    p {
+      font-weight: $regular;
+
+      a {
+        font-weight: $dense;
+        color: color(Secondary);
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.login-form {
+  width: to-rem(400);
+  display: flex;
+  flex-direction: column;
+
+  input {
+    width: 100%;
+    padding: to-rem(10);
+    border: 1px solid color(Primary);
+    border-radius: to-rem(5);
+    margin-bottom: to-rem(7);
+
+    &::placeholder {
+      font-size: to-rem(13);
+      font-weight: $regular;
+      letter-spacing: to-rem(1);
+    }
+  }
+
+  button {
+    margin-top: to-rem(15);
+    padding: to-rem(10);
+    background-color: color(Primary);
+    color: white;
+    font-size: to-rem(16);
+    font-weight: $dense;
+    border-radius: to-rem(5);
+    margin-bottom: to-rem(30);
+    transition: 1000ms;
+
+    &:hover {
+      background-color: color(Secondary);
+    }
+  }
+}
